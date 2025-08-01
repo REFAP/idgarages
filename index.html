@@ -16,7 +16,8 @@
       --light:#f8f9ff;
       --radius:24px;
       --transition:.35s cubic-bezier(.25,.8,.25,1);
-      --shadow-light:0 10px 40px rgba(0,0,0,0.08);
+      --shadow-light:0 10px 40px rgba(0,0,0,.08);
+      --yellow:#ffeb3b;
     }
     *{margin:0;padding:0;box-sizing:border-box;}
     body{
@@ -33,7 +34,7 @@
       left:-999px;
       top:0;
       background:#fff;
-      color:#1e3c72;
+      color:var(--primary);
       padding:8px 12px;
       z-index:1001;
       border-radius:6px;
@@ -44,9 +45,10 @@
     a.skip-link:focus{left:10px;transform:translateY(4px);}
     .progress-indicator{
       position:fixed;
-      inset:0 0 auto;
+      top:0;
+      left:0;
+      right:0;
       height:4px;
-      width:100%;
       background:rgba(255,255,255,.08);
       z-index:1000;
     }
@@ -71,9 +73,9 @@
       height:12px;
       border-radius:50%;
       background:rgba(255,255,255,.3);
-      position:relative;
       cursor:pointer;
       transition:all .3s ease;
+      position:relative;
     }
     .nav-dot.active{
       background:#fff;
@@ -107,8 +109,10 @@
       align-items:center;
       position:relative;
     }
-    .slide-inner{
+    .slide{
       width:100%;
+    }
+    .card{
       background:#fff;
       border-radius:32px;
       padding:80px 60px;
@@ -117,7 +121,7 @@
       overflow:hidden;
       animation:slideIn .8s ease-out both;
     }
-    .slide-inner h1{
+    h1{
       font-size:clamp(2.8rem,5vw,4rem);
       font-weight:900;
       background:linear-gradient(135deg,var(--primary),var(--secondary),var(--accent));
@@ -127,7 +131,7 @@
       margin-bottom:10px;
       line-height:1.1;
     }
-    .slide-inner h2{
+    h2{
       font-size:clamp(2.2rem,4vw,3rem);
       font-weight:800;
       color: var(--primary);
@@ -135,18 +139,18 @@
       margin-bottom:30px;
       line-height:1.1;
     }
-    h3{font-size:1.9rem;font-weight:700;color:var(--primary);margin-bottom:20px;}
+    h3{font-size:1.9rem;font-weight:700;color:var(--primary);margin-bottom:16px;}
     p, li{
       font-size:1.1rem;
       color:#4a5568;
-      margin-bottom:16px;
+      margin-bottom:14px;
     }
     .highlight{
       background:linear-gradient(135deg,#e3f2fd 0%,var(--light) 100%);
       padding:30px 40px;
       border-radius:24px;
       border-left:6px solid var(--secondary);
-      margin:45px 0;
+      margin:40px 0;
       position:relative;
       box-shadow:0 10px 40px rgba(33,150,243,.08);
     }
@@ -160,8 +164,6 @@
       background:#fff;
       border-radius:24px;
       padding:30px;
-      position:relative;
-      overflow:hidden;
       text-align:center;
       box-shadow:var(--shadow-light);
       border:1px solid rgba(33,150,243,.1);
@@ -193,7 +195,6 @@
       background:#f8f9ff;
       border-radius:20px;
       padding:35px;
-      position:relative;
       margin-top:30px;
       border-left:5px solid var(--success);
       box-shadow:0 10px 40px rgba(0,0,0,.08);
@@ -239,7 +240,7 @@
       color:#6b7280;
       font-weight:600;
     }
-    .benefits, .triptyque-container{
+    .benefits, .triptyque{
       display:grid;
       gap:35px;
       grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -258,6 +259,9 @@
     .benefit-item:hover{
       transform:translateY(-8px);
       box-shadow:0 25px 70px rgba(0,0,0,.15);
+    }
+    .triptyque{
+      margin-bottom:30px;
     }
     .triptyque-item{
       position:relative;
@@ -304,7 +308,7 @@
       gap:8px;
       background:linear-gradient(135deg,var(--primary),var(--secondary));
       color:#fff;
-      padding:20px 45px;
+      padding:18px 40px;
       border-radius:60px;
       font-weight:800;
       font-size:1rem;
@@ -330,12 +334,11 @@
       transition:width .6s,height .6s;
     }
     .cta:hover::before{
-      width:260px;
-      height:260px;
+      width:220px;
+      height:220px;
     }
     .urgent{
       background:linear-gradient(135deg,var(--primary),var(--secondary));
-      color:#ffeb3b;
       padding:35px 30px;
       border-radius:28px;
       position:relative;
@@ -345,17 +348,17 @@
     .urgent h3,
     .urgent p,
     .urgent ul,
-    .urgent ul li{
-      color:#ffeb3b;
+    .urgent li{
+      color: var(--yellow);
       margin:0;
     }
     .urgent ul{
-      padding-left:0;
       list-style:none;
-      font-size:1rem;
+      padding-left:0;
       margin-top:10px;
+      font-size:1rem;
     }
-    .urgent ul li{
+    .urgent li{
       font-weight:600;
       margin:8px 0;
     }
@@ -368,7 +371,7 @@
     }
     .flow-step{
       flex:1;
-      min-width:180px;
+      min-width:160px;
       text-align:center;
       position:relative;
       padding:15px;
@@ -386,16 +389,16 @@
       pointer-events:none;
     }
     .flow-circle{
-      width:100px;
-      height:100px;
-      margin:0 auto 15px;
+      width:90px;
+      height:90px;
+      margin:0 auto 12px;
       display:flex;
       align-items:center;
       justify-content:center;
       border-radius:50%;
       background:linear-gradient(135deg,var(--primary),var(--secondary));
       color:#fff;
-      font-size:2rem;
+      font-size:1.8rem;
       font-weight:700;
       position:relative;
       overflow:hidden;
@@ -477,7 +480,6 @@
       border-radius:24px;
       padding:25px;
       box-shadow:0 12px 45px rgba(0,0,0,.08);
-      position:relative;
     }
     .phase h4{
       margin-bottom:8px;
@@ -508,12 +510,12 @@
       position:relative;
     }
     .callout-blue p{
-      color:#ffeb3b;
+      color: var(--yellow);
       font-weight:600;
       margin:0;
     }
     @media (max-width: 900px){
-      .slide-inner{padding:50px 30px;}
+      .card{padding:50px 30px;}
       h1{font-size:2.8rem;}
       h2{font-size:2rem;}
       .flow-step:not(:last-child)::after{display:none;}
@@ -530,19 +532,18 @@
   <div class="progress-indicator" aria-hidden="true">
     <div class="progress-bar" id="progressBar"></div>
   </div>
-
   <nav aria-label="Navigation des sections" id="navDots"></nav>
 
   <main id="main">
-    <!-- Slide 1 -->
-    <section aria-label="Introduction & Opportunité">
+    <!-- Slide 1: Intro & opportunité -->
+    <section aria-label="Introduction & opportunité">
       <div class="container">
-        <div class="slide-inner" aria-labelledby="title-hero">
-          <h1 id="title-hero">Re-FAP × IDGarages</h1>
+        <div class="card" aria-labelledby="hero-title">
+          <h1 id="hero-title">Re-FAP × IDGarages</h1>
           <h2>La Révolution de la Génération de Leads Auto</h2>
           <div class="highlight" role="region" aria-label="Opportunité principale">
             <h3>🚀 L'Opportunité du Siècle dans l'Automobile</h3>
-            <p style="font-size:1.5rem;font-weight:700;color:var(--primary);">
+            <p style="font-size:1.4rem;font-weight:700;color:var(--primary);">
               Transformez <strong>MILLIONS de followers auto</strong> en <strong>leads qualifiés</strong> pour vos garages
             </p>
             <p style="font-size:1.1rem;color:#2a5298;">
@@ -571,7 +572,7 @@
               <div class="kpi-detail">Sur investissement lead</div>
             </div>
           </div>
-          <div class="testimonial" aria-label="Témoignage Re-FAP">
+          <div class="testimonial" aria-label="Témoignage">
             <p>"Nous avons testé le concept avec succès. Les résultats dépassent toutes nos attentes. Il ne manque plus qu'un partenaire d'envergure pour scaler nationalement."</p>
             <div class="testimonial-author">— Équipe Re-FAP, après 6 mois de R&D</div>
           </div>
@@ -579,10 +580,10 @@
       </div>
     </section>
 
-    <!-- Slide 2 -->
+    <!-- Slide 2: Opportunité marché -->
     <section aria-label="Opportunité de marché">
       <div class="container">
-        <div class="slide-inner">
+        <div class="card">
           <h2>Pourquoi C'est le Moment Parfait ?</h2>
           <div class="stats" aria-label="Statistiques utilisateurs">
             <div class="stat-item">
@@ -632,21 +633,21 @@
           <div class="contact-card" aria-label="Contact direct">
             <h3>📞 Contact Direct</h3>
             <p><strong>Équipe Re-FAP prête à démarrer sous 7 jours</strong></p>
-            <p>Un simple "GO" et nous activons l'écosystème pour vous.</p>
+            <p>Un simple « GO » et nous activons l'écosystème pour vous.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 3 -->
-    <section aria-label="Le Triptyque">
+    <!-- Slide 3: Triptyque -->
+    <section aria-label="Le Triptyque Révolutionnaire">
       <div class="container">
-        <div class="slide-inner">
+        <div class="card">
           <h2>Le Triptyque Révolutionnaire Re-FAP</h2>
-          <p style="text-align:center;font-weight:600;color:var(--primary);margin-bottom:45px;">
+          <p style="text-align:center;font-weight:600;color:var(--primary);margin-bottom:35px;">
             3 innovations qui transforment l'écosystème automobile
           </p>
-          <div class="triptyque-container">
+          <div class="triptyque">
             <div class="triptyque-item variant-1">
               <div class="top-accent" aria-hidden="true"></div>
               <span class="number">1</span>
@@ -693,17 +694,17 @@
               </div>
             </div>
           </div>
-          <div style="text-align:center;margin-top:30px;">
+          <div style="text-align:center;margin-top:20px;">
             <button class="cta" onclick="alert('Démo live demandée')">Voir la démo live</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 4 -->
+    <!-- Slide 4: Parcours client -->
     <section aria-label="Parcours client">
       <div class="container">
-        <div class="slide-inner">
+        <div class="card">
           <h2>Le Parcours Client Révolutionnaire</h2>
           <div class="flow-diagram" aria-label="Parcours utilisateur">
             <div class="flow-step">
@@ -760,10 +761,10 @@
       </div>
     </section>
 
-    <!-- Slide 5 -->
+    <!-- Slide 5: Modèle économique -->
     <section aria-label="Modèle économique">
       <div class="container">
-        <div class="slide-inner">
+        <div class="card">
           <h2>Un Modèle Simple et Transparent</h2>
           <div class="pricing">
             <h3 style="text-align:center;color:var(--primary);margin-bottom:20px;">💎 Tarification Performance Pure</h3>
@@ -799,10 +800,10 @@
       </div>
     </section>
 
-    <!-- Slide 6 -->
+    <!-- Slide 6: Vision & prochaines étapes -->
     <section aria-label="Vision et prochaines étapes">
       <div class="container">
-        <div class="slide-inner">
+        <div class="card">
           <h2>La Vision : Dominer le Marché Ensemble</h2>
           <div class="phases">
             <div class="phase">
@@ -818,14 +819,33 @@
               <p>Leader incontesté, 10 000+ leads/mois, nouveaux services, data intelligence</p>
             </div>
           </div>
-          <!-- le bloc urgent ici a été déplacé plus haut pour cohérence visuelle -->
+
+          <div class="urgent" role="alert">
+            <h3>⏰ Pourquoi Agir MAINTENANT ?</h3>
+            <p><strong>3 raisons critiques :</strong></p>
+            <ul>
+              <li>1️⃣ <strong>Pic saisonnier :</strong> +40% de pannes en automne/hiver</li>
+              <li>2️⃣ <strong>First mover advantage :</strong> Exclusivité 12 mois garantie</li>
+              <li>3️⃣ <strong>Compétition arrive :</strong> 3 concurrents préparent des solutions similaires</li>
+            </ul>
+          </div>
+
+          <div class="btn-group">
+            <button class="cta" style="background:linear-gradient(135deg,var(--success),#16a34a);">Planifier une démo</button>
+            <button class="cta" style="background:linear-gradient(135deg,var(--secondary),var(--accent));">Démarrer le POC</button>
+          </div>
+          <div class="contact-card" aria-label="Contact direct">
+            <h3>📞 Contact Direct</h3>
+            <p><strong>Équipe Re-FAP prête à démarrer sous 7 jours</strong></p>
+            <p>Un simple « GO » et nous activons l'écosystème pour vous.</p>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <script>
-    // Génère dynamiquement les nav-dots
+    // Génération nav-dots
     const sections = Array.from(document.querySelectorAll('main section'));
     const nav = document.getElementById('navDots');
     sections.forEach((sec, i) => {
@@ -835,20 +855,17 @@
       dot.setAttribute('data-title', title);
       dot.setAttribute('role','button');
       dot.setAttribute('aria-label', `Aller à ${title}`);
-      dot.addEventListener('click', () => {
-        sec.scrollIntoView({behavior:'smooth'});
-      });
+      dot.addEventListener('click', () => sec.scrollIntoView({behavior:'smooth'}));
       nav.appendChild(dot);
     });
 
-    // Progress bar + activation dot
+    // Progress bar + active dot
     const progressBar = document.getElementById('progressBar');
     let ticking = false;
-    function update(){
+    function update() {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrolled = scrollHeight ? (window.pageYOffset / scrollHeight) * 100 : 0;
       progressBar.style.width = scrolled + '%';
-
       sections.forEach((sec, idx) => {
         const rect = sec.getBoundingClientRect();
         if(rect.top <= window.innerHeight/2 && rect.bottom >= window.innerHeight/2){
@@ -868,7 +885,7 @@
     window.addEventListener('resize', update);
     update();
 
-    // IntersectionReveal
+    // Reveal animations
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if(e.isIntersecting){
@@ -883,6 +900,50 @@
       el.style.transition='all .6s ease-out';
       observer.observe(el);
     });
+
+    // Accès simple (exemple) : modal fallback
+    if(!sessionStorage.getItem('access_granted')){
+      const modal = document.createElement('div');
+      modal.setAttribute('aria-modal','true');
+      modal.style.position='fixed';
+      modal.style.inset='0';
+      modal.style.background='rgba(15,23,42,.95)';
+      modal.style.display='flex';
+      modal.style.alignItems='center';
+      modal.style.justifyContent='center';
+      modal.style.zIndex='2000';
+      modal.innerHTML = `
+        <div style="background:#fff; padding:30px 25px; border-radius:16px; max-width:420px; width:100%; text-align:center; font-family:system-ui;">
+          <h2 style="margin-bottom:10px;color:var(--primary);">Accès Confidentiel</h2>
+          <p style="margin-bottom:15px;">Entrez le code pour continuer</p>
+          <input aria-label="Code d'accès" id="secretInput" type="password" placeholder="Code" style="width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;margin-bottom:12px;font-size:1rem;" />
+          <div style="display:flex;gap:12px;justify-content:center;margin-bottom:8px;">
+            <button id="submitBtn" style="padding:12px 25px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:600;cursor:pointer;">Valider</button>
+            <button id="cancelBtn" style="padding:12px 25px;border:1px solid #ccc;border-radius:8px;background:#f1f5f9;color:var(--dark);cursor:pointer;">Quitter</button>
+          </div>
+          <div id="errorMsg" style="color:#d32f2f;font-size:.9rem;display:none;">Code invalide</div>
+        </div>`;
+      document.body.appendChild(modal);
+      document.getElementById('submitBtn').addEventListener('click', () => {
+        const v = document.getElementById('secretInput').value.trim();
+        if(v === 'IDGARAGES2025'){
+          sessionStorage.setItem('access_granted','1');
+          modal.remove();
+        } else {
+          document.getElementById('errorMsg').style.display='block';
+        }
+      });
+      document.getElementById('cancelBtn').addEventListener('click', () => {
+        document.body.innerHTML = `
+          <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--dark);color:#fff;font-family:system-ui;">
+            <div style="text-align:center;">
+              <div style="font-size:70px;">🚫</div>
+              <div style="font-size:24px;font-weight:700;">Accès refusé</div>
+              <div style="margin-top:8px;">Code non fourni</div>
+            </div>
+          </div>`;
+      });
+    }
   </script>
 </body>
 </html>

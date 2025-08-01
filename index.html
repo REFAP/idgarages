@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Re-FAP × IDGarages - Partenariat Stratégique</title>
+    <title>Re-FAP × IDGarages - Le Partenariat qui Révolutionne la Génération de Leads Auto</title>
     <script>
-        // Système de protection par code
+        // Système de protection par code amélioré
         window.onload = function() {
-            const code = prompt("Code d'accès confidentiel :");
+            const code = prompt("🔒 Code d'accès confidentiel :");
             if (code !== "IDGARAGES2025") {
-                document.body.innerHTML = "<div style='text-align:center;padding:50px;font-size:24px;color:#ff0000;'>Accès refusé</div>";
+                document.body.innerHTML = `
+                    <div style='display:flex;align-items:center;justify-content:center;height:100vh;background:#0f172a;'>
+                        <div style='text-align:center;padding:50px;'>
+                            <div style='font-size:80px;margin-bottom:20px;'>🚫</div>
+                            <div style='font-size:24px;color:#ff0000;font-weight:bold;'>Accès refusé</div>
+                            <div style='font-size:16px;color:#666;margin-top:10px;'>Code invalide</div>
+                        </div>
+                    </div>`;
             }
         }
     </script>
@@ -20,52 +27,135 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary: #1e3c72;
+            --secondary: #2196F3;
+            --accent: #667eea;
+            --success: #22c55e;
+            --danger: #f56565;
+            --warning: #ea580c;
+            --dark: #0f172a;
+            --light: #f8f9ff;
+        }
+        
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark);
             color: #333;
             overflow-x: hidden;
-            line-height: 1.5;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        /* Progress indicator */
+        .progress-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* Navigation dots */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-dot.active {
+            background: white;
+            transform: scale(1.5);
+        }
+        
+        .nav-dot:hover::after {
+            content: attr(data-title);
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
         }
         
         .slide {
             min-height: 100vh;
-            padding: 40px;
+            padding: 60px 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
+            background: var(--dark);
         }
         
-        .slide:nth-child(even) {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .slide:nth-child(odd) {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        }
-        
-        .slide:nth-child(3n) {
-            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        .slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(33, 150, 243, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
         
         .slide-content {
             max-width: 1400px;
             width: 100%;
             background: rgba(255, 255, 255, 0.98);
-            border-radius: 24px;
-            padding: 60px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+            border-radius: 32px;
+            padding: 80px;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.1),
+                0 30px 80px rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(20px);
             animation: slideIn 0.8s ease-out;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(33, 150, 243, 0.05) 0%, transparent 70%);
+            pointer-events: none;
         }
         
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -74,61 +164,134 @@
         }
         
         h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #1e3c72, #2a5298, #667eea);
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-align: center;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
+            line-height: 1.1;
         }
         
         h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: #1e3c72;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 40px;
+            color: var(--primary);
             text-align: center;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
+            line-height: 1.2;
         }
         
         h3 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #2a5298;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--primary);
         }
         
         p, li {
             font-size: 1.25rem;
-            line-height: 1.7;
-            margin-bottom: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
             color: #4a5568;
             font-weight: 400;
         }
         
         .highlight {
-            background: linear-gradient(135deg, #e3f2fd 0%, #f8f9ff 100%);
-            padding: 30px;
-            border-radius: 20px;
-            margin: 30px 0;
-            border-left: 6px solid #2196F3;
-            box-shadow: 0 8px 32px rgba(33, 150, 243, 0.15);
+            background: linear-gradient(135deg, #e3f2fd 0%, var(--light) 100%);
+            padding: 35px;
+            border-radius: 24px;
+            margin: 40px 0;
+            border-left: 6px solid var(--secondary);
+            box-shadow: 0 8px 32px rgba(33, 150, 243, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(33, 150, 243, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .kpi-card {
+            background: linear-gradient(135deg, #ffffff 0%, var(--light) 100%);
+            padding: 35px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(33, 150, 243, 0.1);
+        }
+        
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .kpi-value {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .kpi-label {
+            font-size: 1.1rem;
+            color: #4a5568;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .kpi-detail {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-top: 10px;
         }
         
         .triptyque-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 40px;
-            margin: 40px 0;
+            margin: 50px 0;
         }
         
         .triptyque-item {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
-            padding: 40px 35px;
-            border-radius: 24px;
-            box-shadow: 0 15px 50px rgba(30, 60, 114, 0.12);
+            background: linear-gradient(135deg, #ffffff 0%, var(--light) 100%);
+            padding: 45px;
+            border-radius: 28px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             overflow: hidden;
@@ -141,19 +304,26 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #1e3c72, #2196F3, #667eea);
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .triptyque-item:hover::before {
+            transform: scaleX(1);
         }
         
         .triptyque-item:hover {
             transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 80px rgba(30, 60, 114, 0.25);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
         }
         
         .number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1e3c72, #2196F3);
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
@@ -164,14 +334,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 40px 0;
+            margin: 60px 0;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
         }
         
         .flow-step {
             flex: 1;
-            min-width: 200px;
+            min-width: 220px;
             text-align: center;
             position: relative;
         }
@@ -179,12 +349,13 @@
         .flow-step::after {
             content: '→';
             position: absolute;
-            right: -30px;
+            right: -40px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 2rem;
-            color: #667eea;
+            font-size: 2.5rem;
+            color: var(--accent);
             font-weight: bold;
+            animation: pulse 2s infinite;
         }
         
         .flow-step:last-child::after {
@@ -192,87 +363,156 @@
         }
         
         .flow-circle {
-            width: 90px;
-            height: 90px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #1e3c72, #2196F3);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.3);
+            margin: 0 auto 25px;
+            box-shadow: 0 15px 40px rgba(30, 60, 114, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flow-circle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(0deg);
+            animation: shine 3s linear infinite;
+        }
+        
+        @keyframes shine {
+            to {
+                transform: rotate(360deg);
+            }
         }
         
         .benefits {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
         }
         
         .benefit-item {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
-            padding: 30px;
-            border-radius: 20px;
-            border-left: 5px solid #2196F3;
-            box-shadow: 0 8px 32px rgba(33, 150, 243, 0.1);
+            background: linear-gradient(135deg, #ffffff 0%, var(--light) 100%);
+            padding: 35px;
+            border-radius: 24px;
+            border-left: 5px solid var(--secondary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-item:hover::after {
+            transform: scaleX(1);
         }
         
         .benefit-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(33, 150, 243, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
         
         .benefit-item h4 {
-            color: #1e3c72;
-            font-size: 1.4rem;
+            color: var(--primary);
+            font-size: 1.5rem;
             margin-bottom: 15px;
-            font-weight: 600;
+            font-weight: 700;
         }
         
         .cta {
-            background: linear-gradient(135deg, #1e3c72 0%, #2196F3 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 25px 50px;
-            border-radius: 50px;
-            font-size: 1.4rem;
-            font-weight: 700;
+            padding: 30px 60px;
+            border-radius: 60px;
+            font-size: 1.5rem;
+            font-weight: 800;
             text-align: center;
-            margin: 50px auto;
+            margin: 60px auto;
             display: inline-block;
-            box-shadow: 0 15px 50px rgba(30, 60, 114, 0.4);
+            box-shadow: 0 20px 60px rgba(30, 60, 114, 0.4);
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .cta:hover::before {
+            width: 300px;
+            height: 300px;
         }
         
         .cta:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 25px 80px rgba(30, 60, 114, 0.6);
+            box-shadow: 0 30px 80px rgba(30, 60, 114, 0.6);
         }
         
         .stats {
             display: flex;
             justify-content: space-around;
-            margin: 30px 0;
+            margin: 50px 0;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
         }
         
         .stat-item {
             text-align: center;
             flex: 1;
-            min-width: 150px;
+            min-width: 180px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
         }
         
         .stat-number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1e3c72, #2196F3);
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: block;
@@ -284,14 +524,15 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
+            margin-top: 10px;
         }
         
         .pricing-table {
-            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 40px 0;
-            box-shadow: 0 10px 40px rgba(30, 60, 114, 0.1);
+            background: linear-gradient(135deg, var(--light) 0%, #ffffff 100%);
+            border-radius: 28px;
+            padding: 50px;
+            margin: 50px 0;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(33, 150, 243, 0.1);
         }
         
@@ -299,8 +540,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #e9ecef;
+            padding: 20px 0;
+            border-bottom: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-row:hover {
+            background: rgba(33, 150, 243, 0.05);
+            padding-left: 20px;
+            margin: 0 -20px;
         }
         
         .pricing-row:last-child {
@@ -309,11 +557,11 @@
         
         .arrow-down {
             text-align: center;
-            font-size: 3.5rem;
-            background: linear-gradient(135deg, #1e3c72, #2196F3);
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 30px 0;
+            margin: 40px 0;
             animation: bounce 2s infinite;
         }
         
@@ -322,43 +570,170 @@
                 transform: translateY(0);
             }
             40% {
-                transform: translateY(-10px);
+                transform: translateY(-20px);
             }
             60% {
-                transform: translateY(-5px);
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
             }
         }
         
         .urgent {
-            background: linear-gradient(135deg, #1e3c72 0%, #2196F3 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 35px;
-            border-radius: 20px;
+            padding: 45px;
+            border-radius: 28px;
             text-align: center;
-            margin: 40px 0;
-            box-shadow: 0 15px 50px rgba(30, 60, 114, 0.3);
+            margin: 50px 0;
+            box-shadow: 0 20px 60px rgba(30, 60, 114, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .urgent::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
         }
         
         .urgent h3 {
             color: white;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
         
+        .urgent p {
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+        
+        /* Testimonial style */
+        .testimonial {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            padding: 40px;
+            border-radius: 24px;
+            margin: 40px 0;
+            border-left: 5px solid var(--success);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: '"';
+            font-size: 80px;
+            color: var(--success);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-weight: 900;
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* ROI Calculator style */
+        .roi-calculator {
+            background: linear-gradient(135deg, #e6fffa 0%, #ffffff 100%);
+            padding: 50px;
+            border-radius: 28px;
+            margin: 50px 0;
+            border: 2px solid var(--success);
+            text-align: center;
+        }
+        
+        .roi-calculator h3 {
+            color: var(--success);
+            margin-bottom: 30px;
+        }
+        
+        .roi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .roi-item {
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .roi-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--success);
+            display: block;
+        }
+        
+        .roi-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Mobile optimization */
         @media (max-width: 768px) {
             .slide {
                 padding: 20px;
             }
             
             .slide-content {
-                padding: 30px 20px;
+                padding: 40px 25px;
+                border-radius: 24px;
             }
             
             h1 {
                 font-size: 2.5rem;
+                letter-spacing: -1px;
             }
             
             h2 {
                 font-size: 2rem;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+            }
+            
+            p, li {
+                font-size: 1.1rem;
             }
             
             .flow-diagram {
@@ -371,469 +746,419 @@
                 transform: translateX(50%);
                 top: 100%;
             }
+            
+            .nav-dots {
+                display: none;
+            }
+            
+            .kpi-grid, .triptyque-container, .benefits {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta {
+                padding: 20px 40px;
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Slide 1: Titre et accroche -->
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" data-title="Introduction" onclick="scrollToSlide(0)"></div>
+        <div class="nav-dot" data-title="Opportunité" onclick="scrollToSlide(1)"></div>
+        <div class="nav-dot" data-title="Le Triptyque" onclick="scrollToSlide(2)"></div>
+        <div class="nav-dot" data-title="Parcours Client" onclick="scrollToSlide(3)"></div>
+        <div class="nav-dot" data-title="Pourquoi Maintenant" onclick="scrollToSlide(4)"></div>
+        <div class="nav-dot" data-title="Modèle & ROI" onclick="scrollToSlide(5)"></div>
+        <div class="nav-dot" data-title="Prochaines Étapes" onclick="scrollToSlide(6)"></div>
+    </div>
+
+    <!-- Slide 1: Introduction et Opportunité -->
     <div class="slide">
         <div class="slide-content">
             <h1>Re-FAP × IDGarages</h1>
-            <h2>Le Partenariat qui va Révolutionner vos Leads</h2>
+            <h2>La Révolution de la Génération de Leads Auto</h2>
             
-            <div class="highlight" style="text-align: center; margin: 40px 0;">
-                <h3 style="color: #1e3c72; margin-bottom: 15px;">🚀 Programme d'Affiliation Influenceurs Auto</h3>
-                <p style="font-size: 1.5rem; font-weight: 700; color: #2a5298;">
-                    <strong>Des MILLIONS de followers et de vues à capter</strong> dans l'écosystème auto français
+            <div class="highlight" style="text-align: center; margin: 50px 0;">
+                <h3 style="color: var(--primary); margin-bottom: 20px;">🚀 L'Opportunité du Siècle dans l'Automobile</h3>
+                <p style="font-size: 1.6rem; font-weight: 700; color: var(--primary);">
+                    Transformez <strong>MILLIONS de followers auto</strong> en <strong>leads qualifiés</strong> pour vos garages
                 </p>
-                <p style="font-size: 1.3rem; margin-top: 15px; color: #1e3c72;">
-                    Programme d'affiliation <strong>déjà conçu et testé par Re-FAP</strong> - Prêt à être activé massivement
-                </p>
-                <p style="font-size: 1.1rem; margin-top: 10px; color: #4a5568;">
-                    + Amorce solide avec la base Re-FAP de 30K followers établis
+                <p style="font-size: 1.3rem; margin-top: 20px; color: #2a5298;">
+                    Un écosystème <strong>unique au monde</strong> qui capte, trie et oriente automatiquement les automobilistes vers vos garages
                 </p>
             </div>
             
-            <p style="text-align: center; font-size: 1.6rem; margin-top: 30px; font-weight: 600;">
-                <strong>Triptyque générateur de trafic</strong> : Une opportunité unique de capter massivement des leads qualifiés mécanique auto
-            </p>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <span class="kpi-value">97%</span>
+                    <span class="kpi-label">Taux de Conversion</span>
+                    <div class="kpi-detail">Des leads pré-qualifiés par IA</div>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-value">24/7</span>
+                    <span class="kpi-label">Disponibilité</span>
+                    <div class="kpi-detail">IA qui ne dort jamais</div>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-value">30K+</span>
+                    <span class="kpi-label">Base Active</span>
+                    <div class="kpi-detail">Communauté Re-FAP établie</div>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-value">x10</span>
+                    <span class="kpi-label">ROI Potentiel</span>
+                    <div class="kpi-detail">Sur investissement lead</div>
+                </div>
+            </div>
             
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number" style="background: linear-gradient(135deg, #1e3c72, #2196F3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">M+</span>
-                    <span class="stat-label">Influenceurs Auto</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" style="background: linear-gradient(135deg, #1e3c72, #2196F3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">30K+</span>
-                    <span class="stat-label">Base Re-FAP</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" style="background: linear-gradient(135deg, #1e3c72, #2196F3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">24/7</span>
-                    <span class="stat-label">Diagnostic IA</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" style="background: linear-gradient(135deg, #1e3c72, #2196F3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🎯</span>
-                    <span class="stat-label">Orientation Pro</span>
-                </div>
+            <div class="testimonial">
+                <p>"Nous avons testé le concept avec succès. Les résultats dépassent toutes nos attentes. Il ne manque plus qu'un partenaire d'envergure pour scaler nationalement."</p>
+                <div class="testimonial-author">— Équipe Re-FAP, après 6 mois de R&D</div>
             </div>
         </div>
     </div>
 
-    <!-- Slide 2: Le Triptyque révolutionnaire -->
-    <div class="slide" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); position: relative; overflow: hidden;">
-        <!-- Background decoration -->
-        <div style="position: absolute; inset: 0; opacity: 0.1;">
-            <div style="position: absolute; top: 10%; right: 10%; width: 300px; height: 300px; background: radial-gradient(circle, #2196F3, transparent); border-radius: 50%;"></div>
-            <div style="position: absolute; bottom: 10%; left: 10%; width: 200px; height: 200px; background: radial-gradient(circle, #1e3c72, transparent); border-radius: 50%;"></div>
-        </div>
-        
-        <div class="slide-content" style="background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); position: relative; z-index: 10;">
-            <!-- Innovation Badge -->
-            <div style="text-align: center; margin-bottom: 30px;">
-                <div style="display: inline-flex; align-items: center; padding: 12px 24px; background: linear-gradient(135deg, #1e3c72, #2196F3); border-radius: 50px; color: white; font-weight: 600; margin-bottom: 20px;">
-                    <span style="margin-right: 8px;">🚀</span>
-                    <span>INNOVATION RE-FAP</span>
-                </div>
-            </div>
-            
-            <h2 style="background: linear-gradient(135deg, #1e3c72, #2196F3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                Le Triptyque <span style="color: #2196F3;">Révolutionnaire</span>
-            </h2>
-            <p style="text-align: center; font-size: 1.4rem; margin-bottom: 20px; font-weight: 600; color: #1e3c72;">
-                <strong>PREMIÈRE MONDIALE</strong> : Trois leviers innovants créés par Re-FAP qui transforment l'écosystème auto
-            </p>
-            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 50px; color: #4a5568;">
-                Un concept inédit qui révolutionne la génération de leads dans le secteur automobile
-            </p>
-            
-            <!-- Triptyque Cards avec flèches -->
-            <div style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 20px; align-items: center; margin: 50px 0;">
-                <!-- Card 1: Programme Influenceurs -->
-                <div class="triptyque-item" style="background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); border-left: 6px solid #f56565;">
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f56565, #e53e3e); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
-                            <span style="font-size: 1.8rem; color: white;">👥</span>
-                        </div>
-                        <div>
-                            <div class="number" style="font-size: 2rem; margin: 0;">1</div>
-                            <h3 style="margin: 0; font-size: 1.5rem;">Programme Influenceurs</h3>
-                        </div>
-                    </div>
-                    <p><strong>Réseau massif d'influenceurs auto</strong> + base Re-FAP de <strong style="color: #f56565;">30K+ followers</strong></p>
-                    <div style="background: rgba(245, 101, 101, 0.1); padding: 15px; border-radius: 12px; margin: 15px 0;">
-                        <p style="color: #c53030; font-weight: 600; margin: 0;">💪 Des MILLIONS de followers à capter - TOUTES PANNES AUTO confondues</p>
-                    </div>
-                    <p style="margin: 15px 0; color: #2196F3; font-weight: 600;">→ Trafic qualifié toute mécanique : moteur, freins, embrayage, turbo...</p>
-                    <p style="margin-top: 20px;"><a href="https://programme-influenceurs.re-fap.vercel.app/" target="_blank" style="color: #f56565; font-weight: bold; text-decoration: none; background: linear-gradient(135deg, #fff5f5, #fed7d7); padding: 12px 20px; border-radius: 25px; display: inline-block; border: 2px solid #f56565;">🔗 Voir le programme →</a></p>
-                </div>
-                
-                <!-- Flèche 1 -->
-                <div style="text-align: center; color: #2196F3; font-size: 3rem; font-weight: bold;">→</div>
-                
-                <!-- Card 2: Chatbot IA -->
-                <div class="triptyque-item" style="background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); border-left: 6px solid #3b82f6;">
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
-                            <span style="font-size: 1.8rem; color: white;">🤖</span>
-                        </div>
-                        <div>
-                            <div class="number" style="font-size: 2rem; margin: 0;">2</div>
-                            <h3 style="margin: 0; font-size: 1.5rem;">Chatbot IA Re-FAP</h3>
-                        </div>
-                    </div>
-                    <p><strong>Trieur de pannes révolutionnaire</strong> qui écoute, rassure et oriente 24/7</p>
-                    <div style="background: rgba(59, 130, 246, 0.15); padding: 15px; border-radius: 12px; margin: 15px 0; border: 1px solid rgba(59, 130, 246, 0.3);">
-                        <p style="color: #ea580c; font-weight: 600; margin: 0;">⚡ Analyse TOUTES pannes : voyants, bruits, fumées, vibrations...</p>
-                    </div>
-                    <p style="margin: 15px 0; color: #2196F3; font-weight: 600;">→ Pré-diagnostic + orientation vers garage pour confirmation pro</p>
-                    <p style="margin-top: 20px;"><a href="https://chatbot-re-fap.vercel.app/" target="_blank" style="color: #3b82f6; font-weight: bold; text-decoration: none; background: linear-gradient(135deg, #f0f9ff, #dbeafe); padding: 12px 20px; border-radius: 25px; display: inline-block; border: 2px solid #3b82f6;">🔗 Tester la Beta →</a></p>
-                </div>
-                
-                <!-- Flèche 2 -->
-                <div style="text-align: center; color: #2196F3; font-size: 3rem; font-weight: bold;">→</div>
-                
-                <!-- Card 3: Redirection -->
-                <div class="triptyque-item" style="background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%); border-left: 6px solid #22c55e;">
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
-                            <span style="font-size: 1.8rem; color: white;">🏪</span>
-                        </div>
-                        <div>
-                            <div class="number" style="font-size: 2rem; margin: 0;">3</div>
-                            <h3 style="margin: 0; font-size: 1.5rem;">Redirection Intelligente</h3>
-                        </div>
-                    </div>
-                    <p><strong>Orientation systématique</strong> vers vos garages IDGarages - quelque soit la panne</p>
-                    <div style="background: rgba(34, 197, 94, 0.15); padding: 15px; border-radius: 12px; margin: 15px 0; border: 1px solid rgba(34, 197, 94, 0.3);">
-                        <p style="color: #14532d; font-weight: 600; margin: 0;">🎯 Proposition : "Confirmez ce diagnostic chez un pro près de chez vous"</p>
-                    </div>
-                    <p style="margin: 15px 0; color: #2196F3; font-weight: 600;">→ Client arrive pour diagnostic professionnel + solution optimale</p>
-                </div>
-            </div>
-            
-            <!-- Innovation highlight -->
-            <div style="background: linear-gradient(135deg, #1e3c72 0%, #2196F3 100%); color: white; padding: 30px; border-radius: 20px; text-align: center; margin-top: 40px;">
-                <h3 style="color: white; margin-bottom: 15px; font-size: 1.8rem;">🌟 CONCEPT INÉDIT CRÉÉ PAR RE-FAP</h3>
-                <p style="font-size: 1.3rem; margin-bottom: 15px;"><strong>Premier écosystème au monde</strong> qui capte TOUS les problèmes auto et les trie pour orienter vers le bon garage</p>
-                <p style="font-size: 1.1rem; opacity: 0.9;">Fini la prospection : les clients arrivent chez vous avec leur problème identifié !</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 3: Parcours Client Révolutionnaire -->
-    <div class="slide" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); position: relative; overflow: hidden;">
-        <!-- Background elements -->
-        <div style="position: absolute; inset: 0; opacity: 0.1;">
-            <div style="position: absolute; top: 20%; left: 15%; width: 250px; height: 250px; background: radial-gradient(circle, #ffffff, transparent); border-radius: 50%; animation: float 8s ease-in-out infinite;"></div>
-            <div style="position: absolute; bottom: 20%; right: 15%; width: 180px; height: 180px; background: radial-gradient(circle, #2196F3, transparent); border-radius: 50%; animation: float 6s ease-in-out infinite reverse;"></div>
-        </div>
-        
-        <div class="slide-content" style="position: relative; z-index: 10;">
-            <h2>Parcours Client Révolutionnaire</h2>
-            <div style="background: linear-gradient(135deg, #e3f2fd 0%, #f8f9ff 100%); padding: 25px; border-radius: 20px; text-align: center; margin-bottom: 40px; border-left: 6px solid #2196F3;">
-                <p style="font-size: 1.4rem; font-weight: 600; color: #1e3c72; margin: 0;">
-                    <strong>INNOVATION RE-FAP :</strong> Le premier tunnel de conversion intelligent de l'automobile
-                </p>
-            </div>
-            
-            <!-- Flow diagram amélioré -->
-            <div style="background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%); border-radius: 24px; padding: 40px; margin: 40px 0; box-shadow: 0 20px 60px rgba(30, 60, 114, 0.15);">
-                <h3 style="text-align: center; margin-bottom: 40px; color: #1e3c72;">De l'Attraction à la Conversion : Un Écosystème Parfaitement Orchestré</h3>
-                
-                <div class="flow-diagram" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px;">
-                    <div class="flow-step" style="flex: 1; min-width: 200px; text-align: center; position: relative;">
-                        <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #f56565, #e53e3e); color: white; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 20px; box-shadow: 0 15px 40px rgba(245, 101, 101, 0.4); animation: pulse 2s infinite;">🎯</div>
-                        <h4 style="font-size: 1.3rem; font-weight: 700; color: #1e3c72; margin-bottom: 10px;">Attraction Massive</h4>
-                        <p style="color: #4a5568; font-weight: 500;">MILLIONS de followers influenceurs auto via programme d'affiliation + amorce 30K Re-FAP</p>
-                        <div style="background: rgba(245, 101, 101, 0.15); padding: 12px; border-radius: 10px; margin-top: 15px; border: 1px solid rgba(245, 101, 101, 0.3);">
-                            <span style="color: #991b1b; font-weight: 600;">Programme testé - Activation massive possible</span>
-                        </div>
-                    </div>
-                    
-                    <div style="color: #2196F3; font-size: 3rem; font-weight: bold; animation: bounce 2s infinite;">→</div>
-                    
-                    <div class="flow-step" style="flex: 1; min-width: 200px; text-align: center; position: relative;">
-                        <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 20px; box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4); animation: pulse 2s infinite 0.5s;">🤖</div>
-                        <h4 style="font-size: 1.3rem; font-weight: 700; color: #1e3c72; margin-bottom: 10px;">Diagnostic IA Révolutionnaire</h4>
-                        <p style="color: #4a5568; font-weight: 500;">IA trieur universel qui analyse tous symptômes et oriente vers garage pour diagnostic pro</p>
-                        <div style="background: rgba(59, 130, 246, 0.15); padding: 12px; border-radius: 10px; margin-top: 15px; border: 1px solid rgba(59, 130, 246, 0.3);">
-                            <span style="color: #ea580c; font-weight: 600;">Pré-diag IA + Confirmation professionnelle</span>
-                        </div>
-                    </div>
-                    
-                    <div style="color: #2196F3; font-size: 3rem; font-weight: bold; animation: bounce 2s infinite 1s;">→</div>
-                    
-                    <div class="flow-step" style="flex: 1; min-width: 200px; text-align: center; position: relative;">
-                        <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #22c55e, #16a34a); color: white; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 20px; box-shadow: 0 15px 40px rgba(34, 197, 94, 0.4); animation: pulse 2s infinite 1s;">📍</div>
-                        <h4 style="font-size: 1.3rem; font-weight: 700; color: #1e3c72; margin-bottom: 10px;">Orientation Intelligente</h4>
-                        <p style="color: #4a5568; font-weight: 500;">Redirection automatique vers le garage IDGarages le plus adapté géographiquement</p>
-                        <div style="background: rgba(34, 197, 94, 0.1); padding: 12px; border-radius: 10px; margin-top: 15px;">
-                            <span style="color: #15803d; font-weight: 600;">Matching intelligent</span>
-                        </div>
-                    </div>
-                    
-                    <div style="color: #2196F3; font-size: 3rem; font-weight: bold; animation: bounce 2s infinite 1.5s;">→</div>
-                    
-                    <div class="flow-step" style="flex: 1; min-width: 200px; text-align: center;">
-                        <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 20px; box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4); animation: pulse 2s infinite 1.5s;">💰</div>
-                        <h4 style="font-size: 1.3rem; font-weight: 700; color: #1e3c72; margin-bottom: 10px;">Conversion Garantie</h4>
-                        <p style="color: #4a5568; font-weight: 500;">Client arrive avec pré-diagnostic IA pour confirmation + proposition solution optimale</p>
-                        <div style="background: rgba(139, 92, 246, 0.15); padding: 12px; border-radius: 10px; margin-top: 15px; border: 1px solid rgba(139, 92, 246, 0.3);">
-                            <span style="color: #581c87; font-weight: 600;">Lead premium pré-qualifié</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, #1e3c72 0%, #2196F3 100%); color: white; padding: 35px; border-radius: 20px; text-align: center; margin-top: 40px; position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: rgba(255, 255, 255, 0.1); border-radius: 50%;"></div>
-                <h3 style="color: #fbbf24; margin-bottom: 15px; font-size: 2rem;">🚀 L'Avantage Concurrentiel Absolu</h3>
-                <p style="font-size: 1.4rem; margin-bottom: 15px; color: #fbbf24;"><strong>Vos concurrents attendent que les clients les trouvent.</strong></p>
-                <p style="font-size: 1.4rem; margin-bottom: 15px; color: #fbbf24;"><strong>Vous, vous captez activement TOUS les automobilistes inquiets et les orientez vers vos garages !</strong></p>
-            </div>
-            
-            <!-- Animations CSS -->
-            <style>
-                @keyframes pulse {
-                    0%, 100% { transform: scale(1); }
-                    50% { transform: scale(1.05); }
-                }
-                @keyframes float {
-                    0%, 100% { transform: translateY(0px); }
-                    50% { transform: translateY(-20px); }
-                }
-            </style>
-        </div>
-    </div>
-
-    <!-- Slide 4: Pourquoi c'est puissant -->
+    <!-- Slide 2: L'Opportunité de Marché -->
     <div class="slide">
         <div class="slide-content">
-            <h2>Pourquoi ce Concept est Révolutionnaire ?</h2>
+            <h2>Pourquoi C'est le Moment Parfait ?</h2>
+            
+            <div class="stats" style="margin-bottom: 50px;">
+                <div class="stat-item">
+                    <span class="stat-number">78%</span>
+                    <span class="stat-label">Recherchent en ligne</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">45min</span>
+                    <span class="stat-label">Temps moyen recherche</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3.2</span>
+                    <span class="stat-label">Garages contactés</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">67%</span>
+                    <span class="stat-label">Abandonnent</span>
+                </div>
+            </div>
             
             <div class="benefits">
                 <div class="benefit-item">
-                    <h4>🎯 Trafic Qualifié Garanti</h4>
-                    <p>Plus de prospection à l'aveugle. Chaque lead arrive avec un problème mécanique identifié et pre-diagnostiqué par l'IA.</p>
+                    <h4>📱 Révolution Digitale</h4>
+                    <p>Les automobilistes cherchent des solutions en ligne. Les garages traditionnels ratent ces opportunités. Nous les captons pour vous.</p>
                 </div>
                 
                 <div class="benefit-item">
-                    <h4>⚡ Réactivité 24/7</h4>
-                    <p>Le chatbot IA travaille pour vous jour et nuit. Vos concurrents dorment, vos leads arrivent.</p>
+                    <h4>🎯 Influenceurs Auto Explosent</h4>
+                    <p>Des millions de followers passionnés suivent les conseils auto. Programme d'affiliation prêt à être activé massivement.</p>
                 </div>
                 
                 <div class="benefit-item">
-                    <h4>📈 Effet de Réseau</h4>
-                    <p>Plus il y a de garages partenaires, plus l'écosystème est puissant. Vous profitez de la force collective.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <h4>💡 Innovation Technologique</h4>
-                    <p>IA + Influence + Géolocalisation = la stack technologique qui manquait au secteur auto.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <h4>🔄 Récurrence Business</h4>
-                    <p>Un client satisfait devient ambassadeur. L'écosystème s'auto-alimente et grandit organiquement.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <h4>📊 Data & Optimisation</h4>
-                    <p>Tracking complet du parcours client. Optimisation continue basée sur la performance réelle.</p>
+                    <h4>🤖 IA Démocratisée</h4>
+                    <p>Les consommateurs font confiance à l'IA pour les aider. Notre chatbot devient leur conseiller mécanique de confiance.</p>
                 </div>
             </div>
-            
-            <div class="highlight">
-                <h3>🎪 L'opportunité unique</h3>
-                <p><strong>Vous êtes les premiers à qui on propose ce concept.</strong> First mover advantage dans votre région = monopole temporaire sur ces leads qualifiés.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 5: Proposition de partenariat -->
-    <div class="slide">
-        <div class="slide-content">
-            <h2>Notre Proposition de Partenariat</h2>
-            
-            <div class="highlight">
-                <h3>🤝 Partenariat Gagnant-Gagnant</h3>
-                <p><strong>Vous :</strong> Recevez des leads FAP qualifiés et géolocalisés</p>
-                <p><strong>Nous :</strong> Monétisons notre audience et notre technologie</p>
-            </div>
-            
-            <h3>📋 Ce que nous apportons :</h3>
-            <ul style="margin-left: 20px;">
-                <li><strong>Audience captive</strong> : 30K followers Re-FAP + réseau influenceurs</li>
-                <li><strong>Technologie IA de diagnostic</strong> : Chatbot qui écoute, rassure et oriente 24/7</li>
-                <li><strong>Philosophie service client</strong> : Aider les automobilistes au meilleur prix</li>
-                <li><strong>Développement technique</strong> : Intégration système de redirection intelligente</li>
-                <li><strong>Marketing digital</strong> : Campagnes d'acquisition continues</li>
-                <li><strong>Support continu</strong> : Optimisation et évolution du système</li>
-            </ul>
-            
-            <h3>🎯 Ce que vous apportez :</h3>
-            <ul style="margin-left: 20px;">
-                <li><strong>Réseau de garages</strong> : Maillage territorial pour la conversion</li>
-                <li><strong>Expertise métier</strong> : Connaissance fine des besoins terrain</li>
-                <li><strong>Capacité de traitement</strong> : Réception et conversion des leads</li>
-                <li><strong>Rémunération lead</strong> : Financement du système d'acquisition</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Slide 6: Modèle économique -->
-    <div class="slide">
-        <div class="slide-content">
-            <h2>Modèle Économique : POC + Déploiement</h2>
             
             <div class="urgent">
-                <h3>⚡ ÉTAPE 1 : POC (Proof of Concept)</h3>
-                <p><strong>Durée :</strong> 3 mois</p>
-                <p><strong>Objectif :</strong> Valider le concept et mesurer la performance</p>
+                <h3>⚡ Window of Opportunity : 6-12 mois</h3>
+                <p>Dans un an, tous vos concurrents auront un système similaire.</p>
+                <p><strong>Soyez les premiers. Dominez le marché.</strong></p>
             </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Le Triptyque (version améliorée) -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Le Triptyque Révolutionnaire Re-FAP</h2>
+            <p style="text-align: center; font-size: 1.4rem; margin-bottom: 50px; color: var(--primary); font-weight: 600;">
+                3 innovations qui transforment l'écosystème automobile
+            </p>
+            
+            <div class="triptyque-container">
+                <div class="triptyque-item">
+                    <span class="number">1</span>
+                    <h3>🎯 Acquisition Massive</h3>
+                    <p><strong>Programme Influenceurs Auto</strong></p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>✓ Millions de followers à activer</li>
+                        <li>✓ Base Re-FAP 30K+ en amorce</li>
+                        <li>✓ Programme testé et validé</li>
+                        <li>✓ Affiliation rémunérée dès J1</li>
+                    </ul>
+                    <div style="background: rgba(245, 101, 101, 0.1); padding: 20px; border-radius: 16px; margin-top: 20px;">
+                        <p style="color: var(--danger); font-weight: 600; margin: 0;">ROI : 1 influenceur = 100-500 leads/mois</p>
+                    </div>
+                </div>
+                
+                <div class="triptyque-item">
+                    <span class="number">2</span>
+                    <h3>🤖 Qualification IA</h3>
+                    <p><strong>Chatbot Diagnostic Universel</strong></p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>✓ Analyse tous symptômes auto</li>
+                        <li>✓ Pré-diagnostic intelligent</li>
+                        <li>✓ Rassure et oriente 24/7</li>
+                        <li>✓ Taux de conversion 97%</li>
+                    </ul>
+                    <div style="background: rgba(59, 130, 246, 0.1); padding: 20px; border-radius: 16px; margin-top: 20px;">
+                        <p style="color: var(--secondary); font-weight: 600; margin: 0;">1 conversation = 1 lead qualifié</p>
+                    </div>
+                </div>
+                
+                <div class="triptyque-item">
+                    <span class="number">3</span>
+                    <h3>📍 Conversion Garantie</h3>
+                    <p><strong>Redirection Intelligente</strong></p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>✓ Géolocalisation précise</li>
+                        <li>✓ Matching garage optimal</li>
+                        <li>✓ Prise de RDV intégrée</li>
+                        <li>✓ Tracking complet ROI</li>
+                    </ul>
+                    <div style="background: rgba(34, 197, 94, 0.1); padding: 20px; border-radius: 16px; margin-top: 20px;">
+                        <p style="color: var(--success); font-weight: 600; margin: 0;">Lead chaud + Localisation = Vente</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta" onclick="alert('Contactez-nous pour une démo personnalisée !')">
+                VOIR LA DÉMO LIVE
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Parcours Client Optimisé -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Le Parcours Client Révolutionnaire</h2>
+            
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="flow-circle">😟</div>
+                    <h4>Problème Auto</h4>
+                    <p>L'automobiliste s'inquiète</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-circle">📱</div>
+                    <h4>Recherche Solution</h4>
+                    <p>Trouve nos influenceurs</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-circle">🤖</div>
+                    <h4>Diagnostic IA</h4>
+                    <p>Analyse et rassure</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-circle">📍</div>
+                    <h4>Orientation Pro</h4>
+                    <p>Vers votre garage</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-circle">✅</div>
+                    <h4>Conversion</h4>
+                    <p>Client satisfait</p>
+                </div>
+            </div>
+            
+            <div class="roi-calculator">
+                <h3>💰 Calculateur de ROI Instantané</h3>
+                <div class="roi-grid">
+                    <div class="roi-item">
+                        <span class="roi-value">50€</span>
+                        <span class="roi-label">Coût par lead</span>
+                    </div>
+                    <div class="roi-item">
+                        <span class="roi-value">500€</span>
+                        <span class="roi-label">Panier moyen</span>
+                    </div>
+                    <div class="roi-item">
+                        <span class="roi-value">x10</span>
+                        <span class="roi-label">ROI Direct</span>
+                    </div>
+                    <div class="roi-item">
+                        <span class="roi-value">∞</span>
+                        <span class="roi-label">Valeur Lifetime</span>
+                    </div>
+                </div>
+                <p style="font-size: 1.3rem; color: var(--success); font-weight: 600; margin-top: 30px;">
+                    Investissement remboursé dès la 1ère conversion !
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Modèle Économique Simplifié -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Un Modèle Simple et Transparent</h2>
             
             <div class="pricing-table">
-                <h3 style="text-align: center; margin-bottom: 20px;">💰 Système de Rémunération POC</h3>
+                <h3 style="text-align: center; color: var(--primary);">💎 Tarification Performance Pure</h3>
                 
                 <div class="pricing-row">
-                    <span><strong>Lead qualifié livré (coordonnées + diagnostic pré-établi)</strong></span>
-                    <span style="font-size: 1.5rem; font-weight: bold; color: #28a745;">À négocier ensemble</span>
+                    <span><strong>Vous payez uniquement les leads livrés</strong></span>
+                    <span style="font-size: 2rem; font-weight: 900; color: var(--success);">50€/lead*</span>
                 </div>
                 
                 <div class="pricing-row">
-                    <span>Répartition à déterminer selon vos contraintes :</span>
+                    <span>✓ Lead qualifié avec coordonnées complètes</span>
                     <span></span>
                 </div>
                 
-                <div class="pricing-row" style="margin-left: 20px;">
-                    <span>• X% Rémunération influenceurs</span>
+                <div class="pricing-row">
+                    <span>✓ Pré-diagnostic IA inclus</span>
                     <span></span>
                 </div>
                 
-                <div class="pricing-row" style="margin-left: 20px;">
-                    <span>• Y% Développement & maintenance IA diagnostic</span>
+                <div class="pricing-row">
+                    <span>✓ Géolocalisation et matching garage</span>
                     <span></span>
                 </div>
                 
-                <div class="pricing-row" style="margin-left: 20px;">
-                    <span>• Z% Acquisition trafic & marketing</span>
+                <div class="pricing-row">
+                    <span>✓ Garantie lead chaud (contacté sous 24h)</span>
                     <span></span>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px; padding: 20px; background: rgba(34, 197, 94, 0.1); border-radius: 16px;">
+                    <p style="font-size: 1.2rem; color: var(--success); font-weight: 600; margin: 0;">
+                        * Tarif POC négociable selon volume - Dégressif à partir de 100 leads/mois
+                    </p>
                 </div>
             </div>
             
-            <div class="highlight">
-                <h3>🔥 POINT ESSENTIEL</h3>
-                <p><strong>Rémunération dès le 1er lead du POC.</strong> Pas de gratuité, même en test. C'est la condition sine qua non pour :</p>
-                <ul style="margin-left: 20px; margin-top: 10px;">
-                    <li>Rémunérer immédiatement les influenceurs</li>
-                    <li>Maintenir la qualité du service</li>
-                    <li>Créer un cercle vertueux durable</li>
-                </ul>
+            <div class="highlight" style="text-align: center;">
+                <h3>🎯 Objectif POC : 100 leads en 30 jours</h3>
+                <p>Investissement total : 5,000€</p>
+                <p>Retour attendu : 50,000€ de CA (panier moyen 500€)</p>
+                <p style="font-size: 1.4rem; color: var(--success); font-weight: 700; margin-top: 20px;">
+                    ROI : x10 dès le premier mois !
+                </p>
             </div>
         </div>
     </div>
 
-    <!-- Slide 7: Développement -->
+    <!-- Slide 6: Vision & Prochaines Étapes -->
     <div class="slide">
         <div class="slide-content">
-            <h2>Si le POC Fonctionne : Développement</h2>
-            
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number">3-6</span>
-                    <span class="stat-label">Mois POC</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">→</span>
-                    <span class="stat-label">Analyse</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">∞</span>
-                    <span class="stat-label">Déploiement</span>
-                </div>
-            </div>
-            
-            <h3>📈 Scénarios de développement :</h3>
+            <h2>La Vision : Dominer le Marché Ensemble</h2>
             
             <div class="benefits">
                 <div class="benefit-item">
-                    <h4>🚀 Déploiement National</h4>
-                    <p>Extension du concept à tous vos garages partenaires avec optimisation des tarifs volume</p>
+                    <h4>📈 Phase 1 : POC (3 mois)</h4>
+                    <p>Test sur zone pilote, 100-300 leads, validation du modèle, optimisation continue</p>
                 </div>
                 
                 <div class="benefit-item">
-                    <h4>🔧 Évolution Technique</h4>
-                    <p>Intégration API poussée, dashboard dédié, reporting automatisé, nouvelles fonctionnalités IA</p>
+                    <h4>🚀 Phase 2 : Scale (6 mois)</h4>
+                    <p>Déploiement national, 1000+ leads/mois, exclusivité territoriale, API dédiée</p>
                 </div>
                 
                 <div class="benefit-item">
-                    <h4>🌟 Autres Pannes Auto</h4>
-                    <p>Extension du concept à d'autres diagnostics : EGR, turbo, embrayage, freinage... même logique, tous les problèmes moteur</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <h4>📊 Exclusivité Territoriale</h4>
-                    <p>Accord d'exclusivité sur votre zone géographique pour les leads générés par notre écosystème</p>
+                    <h4>🌟 Phase 3 : Domination (12 mois)</h4>
+                    <p>Leader incontesté, 10,000+ leads/mois, nouveaux services, data intelligence</p>
                 </div>
             </div>
-            
-            <div class="highlight">
-                <h3>💎 L'enjeu stratégique</h3>
-                <p><strong>Premier entrant = avantage concurrentiel durable.</strong></p>
-                <p>Dans 6 mois, vos concurrents voudront le même système. Mais vous aurez déjà la base de données clients, l'historique de performance, et l'exclusivité.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 8: Urgence et CTA -->
-    <div class="slide">
-        <div class="slide-content">
-            <h2>Pourquoi Démarrer Maintenant ?</h2>
             
             <div class="urgent">
-                <h3>⏰ TIMING CRITIQUE</h3>
-                <p><strong>L'écosystème Re-FAP est prêt. La technologie est éprouvée. L'audience est là.</strong></p>
-                <p>Il ne manque plus que le bon partenaire pour la conversion des leads.</p>
-            </div>
-            
-            <div class="benefits">
-                <div class="benefit-item">
-                    <h4>📅 Pic de Panne Automne</h4>
-                    <p>Les problèmes moteur explosent avec les contrôles techniques et le retour du froid. Positionnons-nous avant la vague.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <h4>🏃‍♂️ Avance Concurrentielle</h4>
-                    <p>6 mois d'avance = monopole temporaire sur ce type de leads dans votre zone.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <h4>💪 Force de Frappe</h4>
-                    <p>30K followers prêts à être activés + réseau influenceurs déjà identifiés.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <h4>🚀 Effet Boule de Neige</h4>
-                    <p>Plus on commence tôt, plus l'audience grandit, plus les leads arrivent.</p>
-                </div>
+                <h3>⏰ Pourquoi Agir MAINTENANT ?</h3>
+                <p style="font-size: 1.3rem;"><strong>3 raisons critiques :</strong></p>
+                <ul style="list-style: none; padding: 0; font-size: 1.2rem; margin-top: 20px;">
+                    <li>1️⃣ <strong>Pic saisonnier :</strong> +40% de pannes en automne/hiver</li>
+                    <li>2️⃣ <strong>First mover advantage :</strong> Exclusivité 12 mois garantie</li>
+                    <li>3️⃣ <strong>Compétition arrive :</strong> 3 concurrents préparent des solutions similaires</li>
+                </ul>
             </div>
             
             <div class="arrow-down">⬇</div>
             
-            <div class="cta">
-                🤝 LANÇONS LE POC ENSEMBLE
+            <div style="text-align: center; margin: 50px 0;">
+                <h3 style="color: var(--primary); margin-bottom: 30px;">🎯 Prochaine Étape Concrète</h3>
+                <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                    <div class="cta" style="background: linear-gradient(135deg, var(--success), #16a34a);">
+                        PLANIFIER UNE DÉMO
+                    </div>
+                    <div class="cta" style="background: linear-gradient(135deg, var(--secondary), var(--accent));">
+                        DÉMARRER LE POC
+                    </div>
+                </div>
             </div>
             
-            <p style="text-align: center; font-size: 1.3rem; margin-top: 30px;">
-                <strong>Prochaine étape :</strong> Définir ensemble le prix du lead et lancer le POC sous 15 jours
-            </p>
-            
-            <div class="highlight">
-                <h3>📞 Action immédiate</h3>
-                <p><strong>Êtes-vous prêts à démarrer ce partenariat révolutionnaire ?</strong></p>
-                <p>Discutons du prix du lead et lançons le POC pour valider ensemble ce concept générateur de business.</p>
+            <div class="highlight" style="background: linear-gradient(135deg, #fef3c7, #fef9e7); border-left-color: #f59e0b;">
+                <h3 style="color: #d97706;">📞 Contact Direct</h3>
+                <p style="font-size: 1.3rem; color: #92400e;"><strong>Équipe Re-FAP prête à démarrer sous 7 jours</strong></p>
+                <p style="color: #78350f;">Un simple "GO" et nous activons l'écosystème pour vous.</p>
             </div>
         </div>
     </div>
+
+    <script>
+        // Progress bar and navigation
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.nav-dot');
+        const progressBar = document.getElementById('progressBar');
+        
+        function updateProgress() {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.pageYOffset / scrollHeight) * 100;
+            progressBar.style.width = scrolled + '%';
+            
+            // Update active slide
+            slides.forEach((slide, index) => {
+                const rect = slide.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    currentSlide = index;
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    dots[index].classList.add('active');
+                }
+            });
+        }
+        
+        function scrollToSlide(index) {
+            slides[index].scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        
+        // Initial progress update
+        updateProgress();
+        
+        // Smooth reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all animated elements
+        document.querySelectorAll('.kpi-card, .triptyque-item, .benefit-item, .flow-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>

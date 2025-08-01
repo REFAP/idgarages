@@ -245,7 +245,7 @@
       grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
       margin:50px 0;
     }
-    .benefit-item, .triptyque-item{
+    .benefit-item{
       background:#fff;
       border-radius:28px;
       padding:30px 25px;
@@ -255,9 +255,39 @@
       transition:var(--transition);
       border:1px solid rgba(102,126,234,.1);
     }
-    .benefit-item:hover, .triptyque-item:hover{
+    .benefit-item:hover{
       transform:translateY(-8px);
       box-shadow:0 25px 70px rgba(0,0,0,.15);
+    }
+    .triptyque-item{
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      padding:30px 25px;
+      transition:var(--transition);
+      box-shadow:0 15px 50px rgba(0,0,0,.1);
+      border:1px solid rgba(102,126,234,.15);
+    }
+    .triptyque-item .top-accent{
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:6px;
+      background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));
+    }
+    .triptyque-item.variant-1{
+      background:linear-gradient(135deg,#eef3ff 0%,#ffffff 100%);
+    }
+    .triptyque-item.variant-2{
+      background:linear-gradient(135deg,#f0fff5 0%,#ffffff 100%);
+    }
+    .triptyque-item.variant-3{
+      background:linear-gradient(135deg,#fffdef 0%,#ffffff 100%);
+    }
+    .triptyque-item:hover{
+      transform:translateY(-10px) scale(1.02);
+      box-shadow:0 35px 90px rgba(0,0,0,.2);
     }
     .triptyque-item .number{
       font-size:3rem;
@@ -313,9 +343,21 @@
       box-shadow:0 25px 70px rgba(30,60,114,.35);
     }
     .urgent h3,
-    .urgent p{
+    .urgent p,
+    .urgent ul,
+    .urgent ul li{
       color:#ffeb3b;
-      margin:0 0 8px;
+      margin:0;
+    }
+    .urgent ul{
+      padding-left:0;
+      list-style:none;
+      font-size:1rem;
+      margin-top:10px;
+    }
+    .urgent ul li{
+      font-weight:600;
+      margin:8px 0;
     }
     .flow-diagram{
       display:flex;
@@ -458,7 +500,6 @@
     }
     .contact-card h3{color:#d97706;margin-bottom:8px;}
     .contact-card p{margin:6px 0;}
-    /* nouveau encart bleu clair avec texte jaune */
     .callout-blue{
       background:rgba(59,130,246,.1);
       padding:15px;
@@ -471,7 +512,6 @@
       font-weight:600;
       margin:0;
     }
-    /* Responsive */
     @media (max-width: 900px){
       .slide-inner{padding:50px 30px;}
       h1{font-size:2.8rem;}
@@ -577,9 +617,22 @@
             </div>
           </div>
           <div class="urgent" role="alert">
-            <h3>⚡ Window of Opportunity : 6–12 mois</h3>
-            <p>Dans un an, tous vos concurrents auront une solution comparable.</p>
-            <p><strong>Soyez les premiers. Dominez le marché.</strong></p>
+            <h3>⏰ Pourquoi Agir MAINTENANT ?</h3>
+            <p><strong>3 raisons critiques :</strong></p>
+            <ul>
+              <li>1️⃣ <strong>Pic saisonnier :</strong> +40% de pannes en automne/hiver</li>
+              <li>2️⃣ <strong>First mover advantage :</strong> Exclusivité 12 mois garantie</li>
+              <li>3️⃣ <strong>Compétition arrive :</strong> 3 concurrents préparent des solutions similaires</li>
+            </ul>
+          </div>
+          <div class="btn-group">
+            <button class="cta" style="background:linear-gradient(135deg,var(--success),#16a34a);">Planifier une démo</button>
+            <button class="cta" style="background:linear-gradient(135deg,var(--secondary),var(--accent));">Démarrer le POC</button>
+          </div>
+          <div class="contact-card" aria-label="Contact direct">
+            <h3>📞 Contact Direct</h3>
+            <p><strong>Équipe Re-FAP prête à démarrer sous 7 jours</strong></p>
+            <p>Un simple "GO" et nous activons l'écosystème pour vous.</p>
           </div>
         </div>
       </div>
@@ -594,7 +647,8 @@
             3 innovations qui transforment l'écosystème automobile
           </p>
           <div class="triptyque-container">
-            <div class="triptyque-item">
+            <div class="triptyque-item variant-1">
+              <div class="top-accent" aria-hidden="true"></div>
               <span class="number">1</span>
               <h3>🎯 Acquisition Massive</h3>
               <p><strong>Programme Influenceurs Auto</strong></p>
@@ -608,7 +662,8 @@
                 <p style="color:var(--danger);font-weight:600;margin:0;">ROI : 1 influenceur = 100–500 leads / mois</p>
               </div>
             </div>
-            <div class="triptyque-item">
+            <div class="triptyque-item variant-2">
+              <div class="top-accent" aria-hidden="true"></div>
               <span class="number">2</span>
               <h3>🤖 Qualification IA</h3>
               <p><strong>Chatbot Diagnostic Universel</strong></p>
@@ -622,7 +677,8 @@
                 <p>1 conversation = 1 lead qualifié</p>
               </div>
             </div>
-            <div class="triptyque-item">
+            <div class="triptyque-item variant-3">
+              <div class="top-accent" aria-hidden="true"></div>
               <span class="number">3</span>
               <h3>📍 Conversion Garantie</h3>
               <p><strong>Redirection Intelligente</strong></p>
@@ -762,24 +818,7 @@
               <p>Leader incontesté, 10 000+ leads/mois, nouveaux services, data intelligence</p>
             </div>
           </div>
-          <div class="urgent">
-            <h3>⏰ Pourquoi Agir MAINTENANT ?</h3>
-            <p><strong>3 raisons critiques :</strong></p>
-            <ul style="list-style:none;padding-left:0;font-size:1rem;margin-top:10px;">
-              <li>1️⃣ <strong>Pic saisonnier :</strong> +40% de pannes en automne/hiver</li>
-              <li>2️⃣ <strong>First mover advantage :</strong> Exclusivité 12 mois garantie</li>
-              <li>3️⃣ <strong>Compétition arrive :</strong> 3 concurrents préparent des solutions similaires</li>
-            </ul>
-          </div>
-          <div class="btn-group">
-            <button class="cta" style="background:linear-gradient(135deg,var(--success),#16a34a);">Planifier une démo</button>
-            <button class="cta" style="background:linear-gradient(135deg,var(--secondary),var(--accent));">Démarrer le POC</button>
-          </div>
-          <div class="contact-card" aria-label="Contact direct">
-            <h3>📞 Contact Direct</h3>
-            <p><strong>Équipe Re-FAP prête à démarrer sous 7 jours</strong></p>
-            <p>Un simple "GO" et nous activons l'écosystème pour vous.</p>
-          </div>
+          <!-- le bloc urgent ici a été déplacé plus haut pour cohérence visuelle -->
         </div>
       </div>
     </section>
@@ -844,44 +883,6 @@
       el.style.transition='all .6s ease-out';
       observer.observe(el);
     });
-
-    // Auth modal fallback (exemple minimal)
-    if(!sessionStorage.getItem('access_granted')){
-      const modal = document.createElement('div');
-      modal.setAttribute('aria-modal','true');
-      modal.style.position='fixed';
-      modal.style.inset='0';
-      modal.style.background='rgba(15,23,42,.95)';
-      modal.style.display='flex';
-      modal.style.alignItems='center';
-      modal.style.justifyContent='center';
-      modal.style.zIndex='2000';
-      modal.innerHTML = `
-        <div style="background:#fff; padding:35px 30px; border-radius:18px; max-width:420px; width:100%; text-align:center; position:relative;">
-          <h2 style="margin-bottom:10px;color:#1e3c72;">Accès Confidentiel</h2>
-          <p style="margin-bottom:20px;">Entrez le code pour continuer</p>
-          <input aria-label="Code d'accès" id="secretInput" type="password" placeholder="Code" style="width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;margin-bottom:15px;font-size:1rem;" />
-          <div style="display:flex;gap:12px;justify-content:center;">
-            <button id="submitBtn" style="padding:12px 25px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:600;cursor:pointer;">Valider</button>
-            <button id="cancelBtn" style="padding:12px 25px;border:1px solid #ccc;border-radius:8px;background:#f1f5f9;color:#1e3c72;cursor:pointer;">Quitter</button>
-          </div>
-          <div id="errorMsg" style="color:#d32f2f;margin-top:12px;display:none;font-size:.9rem;">Code invalide</div>
-        </div>`;
-      document.body.appendChild(modal);
-      document.getElementById('submitBtn').addEventListener('click', () => {
-        const v = document.getElementById('secretInput').value.trim();
-        if(v === 'IDGARAGES2025'){
-          sessionStorage.setItem('access_granted','1');
-          modal.remove();
-        } else {
-          const err = document.getElementById('errorMsg');
-          err.style.display='block';
-        }
-      });
-      document.getElementById('cancelBtn').addEventListener('click', () => {
-        document.body.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:var(--dark);color:#fff;font-family:system-ui;"><div style="text-align:center;"><div style="font-size:70px;">🚫</div><div style="font-size:24px;font-weight:700;">Accès refusé</div><div style="margin-top:8px;">Code non fourni</div></div></div>`;
-      });
-    }
   </script>
 </body>
 </html>

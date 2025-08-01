@@ -305,14 +305,18 @@
     }
     .urgent{
       background:linear-gradient(135deg,var(--primary),var(--secondary));
-      color:#fff;
+      color:#ffeb3b;
       padding:35px 30px;
       border-radius:28px;
       position:relative;
       margin:40px 0;
       box-shadow:0 25px 70px rgba(30,60,114,.35);
     }
-    .urgent h3{margin-bottom:10px;}
+    .urgent h3,
+    .urgent p{
+      color:#ffeb3b;
+      margin:0 0 8px;
+    }
     .flow-diagram{
       display:flex;
       flex-wrap:wrap;
@@ -454,6 +458,19 @@
     }
     .contact-card h3{color:#d97706;margin-bottom:8px;}
     .contact-card p{margin:6px 0;}
+    /* nouveau encart bleu clair avec texte jaune */
+    .callout-blue{
+      background:rgba(59,130,246,.1);
+      padding:15px;
+      border-radius:12px;
+      margin-top:15px;
+      position:relative;
+    }
+    .callout-blue p{
+      color:#ffeb3b;
+      font-weight:600;
+      margin:0;
+    }
     /* Responsive */
     @media (max-width: 900px){
       .slide-inner{padding:50px 30px;}
@@ -601,8 +618,8 @@
                 <li>✓ Rassure et oriente 24/7</li>
                 <li>✓ Taux de conversion 97%</li>
               </ul>
-              <div style="background:rgba(59,130,246,.1);padding:15px;border-radius:12px;margin-top:15px;">
-                <p style="color:var(--secondary);font-weight:600;margin:0;">1 conversation = 1 lead qualifié</p>
+              <div class="callout-blue">
+                <p>1 conversation = 1 lead qualifié</p>
               </div>
             </div>
             <div class="triptyque-item">
@@ -853,7 +870,6 @@
       document.body.appendChild(modal);
       document.getElementById('submitBtn').addEventListener('click', () => {
         const v = document.getElementById('secretInput').value.trim();
-        // validation client (pour démonstration), faire serveur-side en prod
         if(v === 'IDGARAGES2025'){
           sessionStorage.setItem('access_granted','1');
           modal.remove();
